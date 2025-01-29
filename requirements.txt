@@ -6,6 +6,6 @@ gunicorn
 h11
 pillow
 sqlparse
-tldata
+
 uvicorn
 whitenoise
