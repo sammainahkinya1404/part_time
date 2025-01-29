@@ -1,5 +1,5 @@
 from django.shortcuts import *
-import requests
+# import requests
 from django.contrib.auth import login, authenticate
 from .models import *
 from django.contrib.auth.hashers import make_password
