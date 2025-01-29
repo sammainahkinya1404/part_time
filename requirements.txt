@@ -1,0 +1,11 @@
+asgiref
+click
+colorama
+django
+gunicorn
+h11
+pillow
+sqlparse
+tldata
+uvicorn
+whitenoise
