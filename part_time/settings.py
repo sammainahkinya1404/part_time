@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['part-time-1.onrender.com' , 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-     'clearcache',
+    
 
     'django.contrib.admin',
     'django.contrib.auth',
