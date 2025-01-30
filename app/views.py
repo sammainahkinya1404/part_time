@@ -12,7 +12,8 @@ from .forms import JobForm
 from .models import Message
 from django.contrib.auth import get_user_model
 
-
+def home(request):
+    return render(request, 'home.html')
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -39,26 +40,38 @@ def register(request):
 
     return render(request, 'register.html')
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import CustomUser
+
+@login_required
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST['email']
+        identifier = request.POST['identifier']  # Email for users, Username for superusers
         password = request.POST['password']
 
-        # Authenticate the user
-        user = CustomUser.objects.filter(email=email).first()
+        user = CustomUser.objects.filter(email=identifier).first()
+
         if user:
             authenticated_user = authenticate(username=user.username, password=password)
-            if authenticated_user:
-                login(request, authenticated_user)
-                return redirect('profile')
-            else:
-                messages.error(request, 'Invalid password')
         else:
-            messages.error(request, 'Email not found')
+            authenticated_user = authenticate(username=identifier, password=password)
+
+        if authenticated_user:
+            login(request, authenticated_user)
+
+            # ✅ Redirect superusers to new custom admin dashboard URL
+            if authenticated_user.is_superuser:
+                return redirect('admins_dashboard')
+
+            return redirect('profile')
+
+        else:
+            messages.error(request, 'Invalid credentials')
 
     return render(request, 'login.html')
-
-
 
 @login_required
 def profile(request):
@@ -184,13 +197,15 @@ def message_detail(request, message_id):
     return render(request, 'message_detail.html', {'message': message})
 
 @login_required
-def admin_dashboard(request):
-    if request.user.role != 'admin':
+def admins_dashboard(request):
+    if not request.user.is_superuser:
         return redirect('/')
+    
     total_users = CustomUser.objects.filter(role='user').count()
     total_merchants = CustomUser.objects.filter(role='merchant').count()
     total_jobs = Job.objects.count()
-    return render(request, 'admin_dashboard.html', {
+
+    return render(request, 'admins_dashboard.html', {
         'total_users': total_users,
         'total_merchants': total_merchants,
         'total_jobs': total_jobs
