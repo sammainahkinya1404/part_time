@@ -33,10 +33,10 @@ urlpatterns = [
 
     # ✅ Custom Admin Panel (Separate from Django’s built-in admin)
     path('custom-admin/dashboard/', admins_dashboard, name='admins_dashboard'),
-    path('custom-admin/users/', manage_users, name='manage_users'),
-    path('custom-admin/users/delete/<int:user_id>/', delete_user, name='delete_user'),
-    path('custom-admin/merchants/', manage_merchants, name='manage_merchants'),
-    path('custom-admin/merchants/delete/<int:merchant_id>/', delete_merchant, name='delete_merchant'),
-    path('custom-admin/jobs/', manage_jobs, name='manage_jobs'),
-    path('custom-admin/jobs/delete/<int:job_id>/', delete_job_admin, name='delete_job_admin'),
+    path('manage_users/', manage_users, name='manage_users'),
+    path('delete_user/<int:user_id>/', delete_user, name='delete_user'),
+    path('manage_merchants', manage_merchants, name='manage_merchants'),
+    path('delete_merchant/<int:merchant_id>/', delete_merchant, name='delete_merchant'),
+    path('manage_jobs/', manage_jobs, name='manage_jobs'),
+    path('delete_job_admin/<int:job_id>/', delete_job_admin, name='delete_job_admin'),
 ]

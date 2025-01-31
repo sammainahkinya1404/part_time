@@ -213,45 +213,45 @@ def admins_dashboard(request):
 
 @login_required
 def manage_users(request):
-    if request.user.role != 'admin':
-        return redirect('/')
+    # if request.user.role != 'admin':
+    #     return redirect('/')
     users = CustomUser.objects.filter(role='user')
     return render(request, 'manage_users.html', {'users': users})
 
 @login_required
 def delete_user(request, user_id):
-    if request.user.role != 'admin':
-        return redirect('/')
+    # if request.user.role != 'admin':
+    #     return redirect('/')
     user = get_object_or_404(CustomUser, id=user_id)
     user.delete()
     return redirect('manage_users')
 
 @login_required
 def manage_merchants(request):
-    if request.user.role != 'admin':
-        return redirect('/')
+    # if request.user.role != 'admin':
+    #     return redirect('/')
     merchants = CustomUser.objects.filter(role='merchant')
     return render(request, 'manage_merchants.html', {'merchants': merchants})
 
 @login_required
 def delete_merchant(request, merchant_id):
-    if request.user.role != 'admin':
-        return redirect('/')
+    # if request.user.role != 'admin':
+    #     return redirect('/')
     merchant = get_object_or_404(CustomUser, id=merchant_id)
     merchant.delete()
     return redirect('manage_merchants')
 
 @login_required
 def manage_jobs(request):
-    if request.user.role != 'admin':
-        return redirect('/')
+    # if request.user.role != 'admin':
+    #     return redirect('/')
     jobs = Job.objects.all()
     return render(request, 'manage_jobs.html', {'jobs': jobs})
 
 @login_required
 def delete_job_admin(request, job_id):
-    if request.user.role != 'admin':
-        return redirect('/')
+    # if request.user.role != 'admin':
+    #     return redirect('/')
     job = get_object_or_404(Job, id=job_id)
     job.delete()
     return redirect('manage_jobs')
