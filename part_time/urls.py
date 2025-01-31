@@ -18,18 +18,18 @@ urlpatterns = [
     path('resume/download/', download_resume, name='download_resume'),
 
     # Job Listings
-    path('jobs/', job_list, name='job_list'),
-    path('jobs/<int:job_id>/', job_detail, name='job_detail'),
-    path('jobs/create/', create_job, name='create_job'),
-    path('jobs/approve/', approve_jobs, name='approve_jobs'),
-    path('jobs/approve/<int:job_id>/', approve_job, name='approve_job'),
-    path('jobs/delete/<int:job_id>/', delete_job, name='delete_job'),
+    path('jobs_list/', job_list, name='job_list'),
+    path('jobs_detail/<int:job_id>/', job_detail, name='job_detail'),
+    path('create_job/', create_job, name='create_job'),
+    path('approve_jobs/', approve_jobs, name='approve_jobs'),
+    path('approve_job/<int:job_id>/', approve_job, name='approve_job'),
+    path('delete_job/<int:job_id>/', delete_job, name='delete_job'),
 
     # Messaging
-    path('messages/inbox/', inbox, name='inbox'),
-    path('messages/sent/', sent_messages, name='sent_messages'),
-    path('messages/send/<int:receiver_id>/', send_message, name='send_message'),
-    path('messages/<int:message_id>/', message_detail, name='message_detail'),
+    path('inbox/', inbox, name='inbox'),
+    path('sent_messages/', sent_messages, name='sent_messages'),
+    path('send_message/<int:receiver_id>/', send_message, name='send_message'),
+    path('message_detail/<int:message_id>/', message_detail, name='message_detail'),
 
     # ✅ Custom Admin Panel (Separate from Django’s built-in admin)
     path('custom-admin/dashboard/', admins_dashboard, name='admins_dashboard'),

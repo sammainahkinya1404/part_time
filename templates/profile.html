@@ -24,6 +24,15 @@
                         <a class="nav-link" href="{% url 'inbox' %}">Messages</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'sent_messages'%}">Sent Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'send_message'user.id %}">Send Message</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'message_detail'user.id %}">Message Detail</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'job_list' %}">Browse Jobs</a>
                     </li>
 
