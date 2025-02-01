@@ -29,7 +29,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn btn-danger btn-sm" href="#">Logout</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -38,6 +38,11 @@
 
     <!-- Create Job Form -->
     <div class="container mt-5">
+        {% if messages %}
+        <div class="alert alert-success">
+            {{ messages }}
+        </div>
+        {% endif %}
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-sm">
@@ -47,25 +52,36 @@
                     <div class="card-body">
                         <form method="POST">
                             {% csrf_token %}
+                            <!-- Job Title -->
                             <div class="mb-3">
-                                <label class="form-label">Job Title</label>
-                                {{ form.title }}
+                                <label for="title" class="form-label">Job Title</label>
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Enter job title" required>
                             </div>
+                            <!-- Description -->
                             <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                {{ form.description }}
+                                <label for="description" class="form-label">Description</label>
+                                <textarea name="description" class="form-control" id="description" rows="4" placeholder="Write job description" required></textarea>
                             </div>
+                            <!-- Salary -->
                             <div class="mb-3">
-                                <label class="form-label">Salary</label>
-                                {{ form.salary }}
+                                <label for="salary" class="form-label">Salary</label>
+                                <input type="number" name="salary" class="form-control" id="salary" placeholder="Enter salary" required>
                             </div>
+                            <!-- Location -->
                             <div class="mb-3">
-                                <label class="form-label">Location</label>
-                                {{ form.location }}
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" name="location" class="form-control" id="location" placeholder="Enter job location" required>
                             </div>
+                            <!-- Category -->
                             <div class="mb-3">
-                                <label class="form-label">Category</label>
-                                {{ form.category }}
+                                <label for="category" class="form-label">Category</label>
+                                <select name="category" id="category" class="form-select" required>
+                                    <option value="" disabled selected>Choose a category</option>
+                                    <option value="IT">IT</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Marketing">Marketing</option>
+                                </select>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-success btn-lg">Post Job</button>

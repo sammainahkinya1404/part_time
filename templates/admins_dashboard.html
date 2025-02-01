@@ -16,19 +16,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'manage_users' %}">Manage Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'manage_merchants' %}">Manage Merchants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'manage_jobs' %}">Manage Jobs</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'manage_users' %}">Manage Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'manage_merchants' %}">Manage Merchants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'manage_jobs' %}">Manage Jobs</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn btn-danger btn-sm" href="#">Logout</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -38,62 +32,33 @@
     <!-- Dashboard Content -->
     <div class="container mt-5">
         <div class="row">
-            <!-- Total Users Card -->
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-primary text-white text-center">
-                        <h5>Total Users</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="display-4">{{ total_users }}</h1>
+                <div class="card text-center border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white"><h5>Total Users</h5></div>
+                    <div class="card-body"><h1>{{ total_users }}</h1>
                         <a href="{% url 'manage_users' %}" class="btn btn-outline-primary btn-sm">Manage Users</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Total Merchants Card -->
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-success text-white text-center">
-                        <h5>Total Merchants</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="display-4">{{ total_merchants }}</h1>
+                <div class="card text-center border-0 shadow-sm">
+                    <div class="card-header bg-success text-white"><h5>Total Merchants</h5></div>
+                    <div class="card-body"><h1>{{ total_merchants }}</h1>
                         <a href="{% url 'manage_merchants' %}" class="btn btn-outline-success btn-sm">Manage Merchants</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Total Jobs Card -->
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-warning text-white text-center">
-                        <h5>Total Jobs</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="display-4">{{ total_jobs }}</h1>
+                <div class="card text-center border-0 shadow-sm">
+                    <div class="card-header bg-warning text-white"><h5>Available Jobs</h5></div>
+                    <div class="card-body"><h1>{{ total_jobs }}</h1>
                         <a href="{% url 'manage_jobs' %}" class="btn btn-outline-warning btn-sm">Manage Jobs</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Additional Features Section -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-dark text-white text-center">
-                        <h5>System Overview</h5>
-                    </div>
-                    <div class="card-body">
-                        <p>Welcome to the Administrator Dashboard! Use the options above to manage users, merchants, and jobs. Ensure the system is operating smoothly and efficiently.</p>
-                        <p>If you encounter any issues, contact support for assistance.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

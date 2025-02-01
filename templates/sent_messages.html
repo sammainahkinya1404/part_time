@@ -1,27 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sent Messages</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Messaging System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'inbox' %}">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Sent Messages</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sent Messages Container -->
     <div class="container mt-5">
-        <h3>Sent Messages</h3>
-        <ul class="list-group">
-            {% for message in messages %}
-            <li class="list-group-item d-flex justify-content-between">
-                <div>
-                    <strong>To:</strong> {{ message.receiver.username }} <br>
-                    <small>{{ message.created_at }}</small>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="card-title mb-0">Sent Messages</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if messages %}
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Recipient</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for message in messages %}
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            
+                                            {{ message.receiver.username }}
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ message.content|truncatewords:10 }}
+                                    </td>
+                                    <td class="align-middle">
+                                        <small>{{ message.created_at|date:"F j, Y, g:i a" }}</small>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="{% url 'message_detail' message.id %}" class="btn btn-sm btn-primary">View</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <div class="alert alert-info text-center mb-0">
+                            No messages found.
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <div>
-                    <a href="{% url 'message_detail' message.id %}" class="btn btn-primary btn-sm">View</a>
-                </div>
-            </li>
-            {% empty %}
-            <li class="list-group-item">No messages found.</li>
-            {% endfor %}
-        </ul>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

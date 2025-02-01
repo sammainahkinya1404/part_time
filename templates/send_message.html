@@ -6,12 +6,25 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h3>Send Message to {{ receiver.username }}</h3>
+        <h3>Send Message</h3>
         <form method="POST">
             {% csrf_token %}
+            
+            <!-- Dropdown to select recipient -->
+            <div class="mb-3">
+                <label for="receiver" class="form-label">Select Recipient:</label>
+                <select name="receiver" id="receiver" class="form-control" required>
+                    <option value="">-- Select a User --</option>
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
             <div class="mb-3">
                 <textarea name="content" class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
             </div>
+
             <button type="submit" class="btn btn-success">Send Message</button>
         </form>
     </div>
