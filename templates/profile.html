@@ -7,131 +7,131 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <!-- Navigation Bar -->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Campus System</a>
+            <a class="navbar-brand" href="#">校园系统</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <!-- Shared modules -->
+                    <!-- 共享模块 -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        <a class="nav-link" href="{% url 'profile' %}">个人资料</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'inbox' %}">Messages</a>
+                        <a class="nav-link" href="{% url 'inbox' %}">消息</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'sent_messages' %}">Sent Messages</a>
+                        <a class="nav-link" href="{% url 'sent_messages' %}">已发送消息</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'send_message' %}">Send Message</a>
+                        <a class="nav-link" href="{% url 'send_message' %}">发送消息</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'job_list' %}">Browse Jobs</a>
+                        <a class="nav-link" href="{% url 'job_list' %}">浏览工作</a>
                     </li>
 
-                    <!-- Merchant-specific modules -->
+                    <!-- 商家专属模块 -->
                     {% if user.role == "merchant" %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_job' %}">Post a Job</a>
+                        <a class="nav-link" href="{% url 'create_job' %}">发布工作</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'manage_jobs' %}">Manage Jobs</a>
+                        <a class="nav-link" href="{% url 'manage_jobs' %}">管理工作</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_applicants' %}">View Applications</a>
+                        <a class="nav-link" href="{% url 'view_applicants' %}">查看申请</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'track_assigned_tasks' %}">Track Assigned Tasks</a>
+                        <a class="nav-link" href="{% url 'track_assigned_tasks' %}">跟踪分配任务</a>
                     </li>
                     {% endif %}
 
-                    <!-- User-specific modules -->
+                    <!-- 用户专属模块 -->
                     {% if user.role == "user" %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_applications' %}">My Applications</a>
+                        <a class="nav-link" href="{% url 'my_applications' %}">我的申请</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_tasks' %}">My Assigned Tasks</a>
+                        <a class="nav-link" href="{% url 'my_tasks' %}">我的分配任务</a>
                     </li>
                     {% endif %}
                 </ul>
-                <!-- Logout button -->
+                <!-- 登出按钮 -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Logout</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">登出</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Profile Content -->
+    <!-- 个人资料内容 -->
     <div class="container mt-5">
         <div class="row">
-            <!-- Left Section -->
+            <!-- 左侧部分 -->
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white text-center">
-                        <h5>Your Profile</h5>
+                        <h5>你的个人资料</h5>
                     </div>
                     <div class="card-body">
-                        <p><strong>Username:</strong> {{ user.username }}</p>
-                        <p><strong>Email:</strong> {{ user.email }}</p>
-                        <p><strong>Contact Info:</strong> {{ user.contact_info }}</p>
-                        <p><strong>Resume:</strong> 
+                        <p><strong>用户名:</strong> {{ user.username }}</p>
+                        <p><strong>邮箱:</strong> {{ user.email }}</p>
+                        <p><strong>联系方式:</strong> {{ user.contact_info }}</p>
+                        <p><strong>简历:</strong> 
                             {% if user.resume %}
-                                <a href="{% url 'download_resume1' user.username %}" class="btn btn-primary btn-sm">Download Resume</a>
+                                <a href="{% url 'download_resume1' user.username %}" class="btn btn-primary btn-sm">下载简历</a>
                             {% else %}
-                                No resume uploaded
+                                未上传简历
                             {% endif %}
                         </p>
                     </div>
                 </div>
 
-                <!-- Resume Upload Form -->
+                <!-- 简历上传表单 -->
                 <div class="card">
                     <div class="card-header bg-success text-white text-center">
-                        <h5>Upload Resume</h5>
+                        <h5>上传简历</h5>
                     </div>
                     <div class="card-body">
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <label for="resume">Upload Resume (PDF only):</label>
+                            <label for="resume">上传简历（仅限PDF）:</label>
                             <input type="file" name="resume" accept=".pdf" class="form-control mb-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Section -->
+            <!-- 右侧部分 -->
             <div class="col-md-8">
                 <div class="card mb-4">
                     <div class="card-header bg-secondary text-white text-center">
-                        <h5>Quick Navigation</h5>
+                        <h5>快速导航</h5>
                     </div>
                     <div class="card-body d-grid gap-3">
-                        <a href="{% url 'edit_profile' %}" class="btn btn-outline-secondary">Edit Profile</a>
+                        <a href="{% url 'edit_profile' %}" class="btn btn-outline-secondary">编辑个人资料</a>
                         
-                        <!-- Merchant Modules -->
+                        <!-- 商家模块 -->
                         {% if user.role == "merchant" %}
-                        <a href="{% url 'view_applicants' %}" class="btn btn-outline-primary">View Job Applications</a>
-                        <a href="{% url 'create_job' %}" class="btn btn-outline-success">Post a Job</a>
-                        <a href="{% url 'manage_jobs' %}" class="btn btn-outline-warning">Manage Jobs</a>
-                        <a href="{% url 'track_assigned_tasks' %}" class="btn btn-outline-dark">Track Assigned Tasks</a>
+                        <a href="{% url 'view_applicants' %}" class="btn btn-outline-primary">查看工作申请</a>
+                        <a href="{% url 'create_job' %}" class="btn btn-outline-success">发布工作</a>
+                        <a href="{% url 'manage_jobs' %}" class="btn btn-outline-warning">管理工作</a>
+                        <a href="{% url 'track_assigned_tasks' %}" class="btn btn-outline-dark">跟踪分配任务</a>
                         {% endif %}
 
-                        <!-- User Modules -->
+                        <!-- 用户模块 -->
                         {% if user.role == "user" %}
-                        <a href="{% url 'my_applications' %}" class="btn btn-outline-info">My Applications</a>
-                        <a href="{% url 'my_tasks' %}" class="btn btn-outline-primary">My Assigned Tasks</a>
+                        <a href="{% url 'my_applications' %}" class="btn btn-outline-info">我的申请</a>
+                        <a href="{% url 'my_tasks' %}" class="btn btn-outline-primary">我的分配任务</a>
                         {% endif %}
                         
-                        <a href="{% url 'job_list' %}" class="btn btn-outline-secondary">Browse Jobs</a>
+                        <a href="{% url 'job_list' %}" class="btn btn-outline-secondary">浏览工作</a>
                     </div>
                 </div>
             </div>

@@ -48,7 +48,6 @@
                                     <th scope="col">Recipient</th>
                                     <th scope="col">Message</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,9 +65,7 @@
                                     <td class="align-middle">
                                         <small>{{ message.created_at|date:"F j, Y, g:i a" }}</small>
                                     </td>
-                                    <td class="align-middle">
-                                        <a href="{% url 'message_detail' message.id %}" class="btn btn-sm btn-primary">View</a>
-                                    </td>
+                                    
                                 </tr>
                                 {% endfor %}
                             </tbody>

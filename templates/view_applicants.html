@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Applicants</title>
+    <title>查看申请人</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
     <div class="container mt-5">
-        <h3 class="text-center">Applicants for Your Jobs</h3>
+        <h3 class="text-center">您的职位申请人</h3>
         {% if jobs %}
             {% for job in jobs %}
             <div class="card mb-4 shadow-sm">
@@ -20,10 +20,10 @@
                     <table class="table table-hover">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">Applicant</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Resume</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">申请人</th>
+                                <th scope="col">留言</th>
+                                <th scope="col">简历</th>
+                                <th scope="col">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,20 +33,20 @@
                                 <td>{{ application.message }}</td>
                                 <td>
                                     {% if application.applicant.resume %}
-                                        <a href="{{ application.applicant.resume.url }}" class="btn btn-sm btn-info" download>Download Resume</a>
+                                        <a href="{{ application.applicant.resume.url }}" class="btn btn-sm btn-info" download>下载简历</a>
                                     {% else %}
-                                        <span class="text-muted">No Resume Uploaded</span>
+                                        <span class="text-muted">未上传简历</span>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if job.assigned_user == application.applicant %}
-                                        <span class="badge bg-success">Assigned</span>
+                                        <span class="badge bg-success">已分配</span>
                                     {% else %}
                                         <form method="POST" action="{% url 'assign_task' %}">
                                             {% csrf_token %}
                                             <input type="hidden" name="job_id" value="{{ job.id }}">
                                             <input type="hidden" name="applicant_id" value="{{ application.applicant.id }}">
-                                            <button type="submit" class="btn btn-sm btn-success">Assign</button>
+                                            <button type="submit" class="btn btn-sm btn-success">分配</button>
                                         </form>
                                     {% endif %}
                                 </td>
@@ -55,14 +55,14 @@
                         </tbody>
                     </table>
                     {% else %}
-                    <p class="text-muted">No applicants for this job yet.</p>
+                    <p class="text-muted">该职位尚无申请人。</p>
                     {% endif %}
                 </div>
             </div>
             {% endfor %}
         {% else %}
         <div class="alert alert-info text-center">
-            You have not posted any jobs yet.
+            您尚未发布任何职位。
         </div>
         {% endif %}
     </div>

@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inbox</title>
+    <title>收件箱</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <!-- Navigation Bar -->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Messaging System</a>
+            <a class="navbar-brand" href="#">消息系统</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inbox</a>
+                        <a class="nav-link active" href="#">收件箱</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'sent_messages' %}">Sent Messages</a>
+                        <a class="nav-link" href="{% url 'sent_messages' %}">已发送消息</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Logout</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">登出</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Inbox Container -->
+    <!-- 收件箱容器 -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="card-title mb-0">Inbox</h4>
+                        <h4 class="card-title mb-0">收件箱</h4>
                     </div>
                     <div class="card-body">
                         {% if messages %}
                         <table class="table table-hover">
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">Sender</th>
-                                    <th scope="col">Message</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">发件人</th>
+                                    <th scope="col">消息</th>
+                                    <th scope="col">日期</th>
+                                    <th scope="col">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,7 +56,6 @@
                                 <tr class="{% if not message.is_read %}table-warning{% endif %}">
                                     <td class="align-middle">
                                         <div class="d-flex align-items-center">
-                                           
                                             {{ message.sender.username }}
                                         </div>
                                     </td>
@@ -64,10 +63,10 @@
                                         {{ message.content|truncatewords:10 }}
                                     </td>
                                     <td class="align-middle">
-                                        <small>{{ message.created_at|date:"F j, Y, g:i a" }}</small>
+                                        <small>{{ message.created_at|date:"Y年n月j日, g:i a" }}</small>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="{% url 'message_detail' message.id %}" class="btn btn-sm btn-primary">View</a>
+                                        <a href="{% url 'message_detail' message.id %}" class="btn btn-sm btn-primary">查看</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -75,7 +74,7 @@
                         </table>
                         {% else %}
                         <div class="alert alert-info text-center mb-0">
-                            No messages found.
+                            未找到消息。
                         </div>
                         {% endif %}
                     </div>
