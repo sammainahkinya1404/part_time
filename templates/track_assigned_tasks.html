@@ -11,22 +11,6 @@
         <h3 class="text-center">分配的任务</h3>
         {% if jobs %}
         <ul class="list-group mt-3">
-            <h3 class="text-center">分配的任务</h3>
-            {% if jobs %}
-            {% for job in jobs %}
-            <li class="list-group-item">
-            <strong>工作：</strong> {{ job.title }} <br>
-            <strong>分配给：</strong> {{ job.assigned_user.username }} <br>
-            <strong>联系方式：</strong> {{ job.assigned_user.email }} <br>
-            <strong>描述：</strong> {{ job.description }}
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <div class="alert alert-info text-center mt-4">
-            尚未分配任务。
-        </div>
-        {% endif %}
             {% for job in jobs %}
             <li class="list-group-item">
                 <strong>工作：</strong> {{ job.title }} <br>

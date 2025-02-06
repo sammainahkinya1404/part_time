@@ -9,9 +9,12 @@
         <h3>编辑个人资料</h3>
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            <p><label for="id_username">用户名：</label> {{ form.username }}</p>
+            <p><label for="id_email">电子邮件：</label> {{ form.email }}</p>
+            <p><label for="id_contact_info">联系方式：</label> {{ form.contact_info }}</p>
             <button type="submit" class="btn btn-primary">保存更改</button>
         </form>
     </div>
+    
 </body>
 </html>

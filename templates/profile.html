@@ -20,17 +20,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' %}">个人资料</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'inbox' %}">消息</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'sent_messages' %}">已发送消息</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'send_message' %}">发送消息</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'job_list' %}">浏览工作</a>
+
+                    <!-- Messages Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            消息
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'inbox' %}">收件箱</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sent_messages' %}">已发送消息</a></li>
+                            <li><a class="dropdown-item" href="{% url 'send_message' %}">发送消息</a></li>
+                        </ul>
                     </li>
 
                     <!-- 商家专属模块 -->
@@ -52,13 +52,11 @@
                     <!-- 用户专属模块 -->
                     {% if user.role == "user" %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_applications' %}">我的申请</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_tasks' %}">我的分配任务</a>
+                        <a class="nav-link" href="{% url 'job_list' %}">浏览工作</a>
                     </li>
                     {% endif %}
                 </ul>
+                
                 <!-- 登出按钮 -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -81,7 +79,8 @@
                     <div class="card-body">
                         <p><strong>用户名:</strong> {{ user.username }}</p>
                         <p><strong>邮箱:</strong> {{ user.email }}</p>
-                        <p><strong>联系方式:</strong> {{ user.contact_info }}</p>
+                       
+                        {% if user.role == "user" %}
                         <p><strong>简历:</strong> 
                             {% if user.resume %}
                                 <a href="{% url 'download_resume1' user.username %}" class="btn btn-primary btn-sm">下载简历</a>
@@ -89,10 +88,12 @@
                                 未上传简历
                             {% endif %}
                         </p>
+                        {%endif%}
                     </div>
                 </div>
 
                 <!-- 简历上传表单 -->
+                {% if user.role == "user" %}
                 <div class="card">
                     <div class="card-header bg-success text-white text-center">
                         <h5>上传简历</h5>
@@ -106,6 +107,7 @@
                         </form>
                     </div>
                 </div>
+                {% endif %}
             </div>
 
             <!-- 右侧部分 -->
@@ -130,8 +132,6 @@
                         <a href="{% url 'my_applications' %}" class="btn btn-outline-info">我的申请</a>
                         <a href="{% url 'my_tasks' %}" class="btn btn-outline-primary">我的分配任务</a>
                         {% endif %}
-                        
-                        <a href="{% url 'job_list' %}" class="btn btn-outline-secondary">浏览工作</a>
                     </div>
                 </div>
             </div>

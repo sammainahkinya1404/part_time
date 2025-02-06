@@ -20,12 +20,13 @@ class CustomUser(AbstractUser):
 
 class Job(models.Model):
     CATEGORY_CHOICES = (
-        ('IT', 'IT & Software'),
-        ('Retail', 'Retail & Sales'),
-        ('Education', 'Education & Tutoring'),
-        ('Hospitality', 'Hospitality'),
-        ('Other', 'Other'),
-    )
+    ('信息技术与软件', '信息技术与软件'),  # IT & Software
+    ('零售与销售', '零售与销售'),  # Retail & Sales
+    ('教育与辅导', '教育与辅导'),  # Education & Tutoring
+    ('酒店与服务行业', '酒店与服务行业'),  # Hospitality
+    ('其他', '其他'),  # Other
+)
+
 
     title = models.CharField(max_length=100)
     description = models.TextField()

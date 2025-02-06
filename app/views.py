@@ -76,7 +76,8 @@ def login_view(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html', {'user': request.user})
+    user=request.user
+    return render(request, 'profile.html', {'user': user})
 
 @login_required
 def edit_profile(request):
@@ -210,6 +211,34 @@ def delete_job(request):
         job.delete()
         messages.success(request, "Job deleted successfully.")
         return redirect('manage_jobs')
+    
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .forms import JobForm
+from .models import Job
+
+@login_required
+def edit_job(request):
+    if request.user.role != 'merchant':
+        return redirect('job_list')
+
+    if request.method == 'POST':
+        job_id = request.POST.get('job_id')
+        job = get_object_or_404(Job, id=job_id, created_by=request.user)
+
+        form = JobForm(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Job updated successfully.")
+            return redirect('manage_jobs')
+    else:
+        job_id = request.GET.get('job_id')
+        job = get_object_or_404(Job, id=job_id, created_by=request.user)
+        form = JobForm(instance=job)
+    
+    return render(request, 'edit_job.html', {'form': form, 'job': job})
+
 
 User = get_user_model()
 

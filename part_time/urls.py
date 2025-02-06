@@ -23,6 +23,8 @@ urlpatterns = [
     path('job_list/', job_list, name='job_list'),
     path('manage_jobs/', manage_jobs, name='manage_jobs'),
     path('delete_job/', delete_job, name='delete_job'),
+    path('edit_job/', edit_job, name='edit_job'),  # No job ID in the URL here
+
 
     # Messaging
     path('inbox/', inbox, name='inbox'),
