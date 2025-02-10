@@ -1,53 +1,53 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>已发送消息</title>
+    <title>Sent Messages</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <!-- 导航栏 -->
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">消息系统</a>
+            <a class="navbar-brand" href="#">Message System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'inbox' %}">收件箱</a>
+                        <a class="nav-link" href="{% url 'inbox' %}">Inbox</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">已发送消息</a>
+                        <a class="nav-link active" href="#">Sent Messages</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">登出</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- 已发送消息容器 -->
+    <!-- Sent Messages Container -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="card-title mb-0">已发送消息</h4>
+                        <h4 class="card-title mb-0">Sent Messages</h4>
                     </div>
                     <div class="card-body">
                         {% if messages %}
                         <table class="table table-hover">
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">收件人</th>
-                                    <th scope="col">消息</th>
-                                    <th scope="col">日期</th>
+                                    <th scope="col">Receiver</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,6 @@
                                 <tr>
                                     <td class="align-middle">
                                         <div class="d-flex align-items-center">
-                                            
                                             {{ message.receiver.username }}
                                         </div>
                                     </td>
@@ -63,16 +62,15 @@
                                         {{ message.content|truncatewords:10 }}
                                     </td>
                                     <td class="align-middle">
-                                        <small>{{ message.created_at|date:"Y年n月j日, g:i a" }}</small>
+                                        <small>{{ message.created_at|date:"Y-m-d, g:i a" }}</small>
                                     </td>
-                                    
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                         {% else %}
                         <div class="alert alert-info text-center mb-0">
-                            未找到消息。
+                            No messages found.
                         </div>
                         {% endif %}
                     </div>
