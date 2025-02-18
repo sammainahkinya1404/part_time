@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Job Listings</title>
+    <title>职位列表</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -31,20 +31,20 @@
     <div class="container mt-5">
         <div class="row mb-4">
             <div class="col text-center">
-                <h2 class="text-primary">Find Part-Time Jobs</h2>
-                <p class="text-muted">Browse the latest job opportunities</p>
+                <h2 class="text-primary">寻找兼职工作</h2>
+                <p class="text-muted">浏览最新的工作机会</p>
             </div>
         </div>
 
-        <!-- Search Bar -->
+        <!-- 搜索栏 -->
         <form method="GET" class="mb-4">
             <div class="input-group search-bar">
-                <input type="text" name="q" class="form-control" placeholder="Search for jobs..." aria-label="Search for jobs">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <input type="text" name="q" class="form-control" placeholder="搜索工作..." aria-label="搜索工作">
+                <button class="btn btn-primary" type="submit">搜索</button>
             </div>
         </form>
 
-        <!-- Job Listings -->
+        <!-- 职位列表 -->
         {% if jobs %}
         <div class="row">
             {% for job in jobs %}
@@ -57,12 +57,12 @@
                             <span class="text-muted small">{{ job.location }}</span>
                             <span class="badge bg-info text-dark">{{ job.category }}</span>
                         </div>
-                        <!-- Job Application Form -->
+                        <!-- 职位申请表 -->
                         <form method="POST" action="{% url 'job_apply' %}">
                             {% csrf_token %}
                             <input type="hidden" name="job_title" value="{{ job.title }}">
-                            <textarea name="message" class="form-control mb-2" placeholder="Write a message to the poster..." required></textarea>
-                            <button type="submit" class="btn btn-success btn-sm">Apply</button>
+                            <textarea name="message" class="form-control mb-2" placeholder="给发布者写一条消息..." required></textarea>
+                            <button type="submit" class="btn btn-success btn-sm">申请</button>
                         </form>
                     </div>
                 </div>
@@ -72,15 +72,15 @@
         {% else %}
         <div class="row">
             <div class="col text-center">
-                <p class="text-muted">No jobs found. Try using different search terms.</p>
+                <p class="text-muted">未找到工作。尝试使用不同的搜索词。</p>
             </div>
         </div>
         {% endif %}
     </div>
 
-    <!-- Footer -->
+    <!-- 页脚 -->
     <footer class="text-center mt-5 py-3 bg-light">
-        <p class="mb-0 text-muted">&copy; 2025 Job Portal. All rights reserved.</p>
+        <p class="mb-0 text-muted">&copy; 2025 职位门户网站。版权所有。</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

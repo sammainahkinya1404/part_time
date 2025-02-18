@@ -1,92 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Part-time System</title>
+    <title>校园兼职系统</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#">Campus Part-time</a>
+            <a class="navbar-brand" href="#">校园兼职</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        <a class="nav-link" href="{% url 'register' %}">注册</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'login' %}">登录</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">Admin Login</a>
+                        <a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">管理员登录</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Jumbotron -->
+    <!-- 巨幕 -->
     <header class="bg-light py-5">
         <div class="container text-center">
-            <h1 class="display-4">Find and Provide Campus Part-time Jobs</h1>
-            <p class="lead">Connecting students with campus part-time job opportunities.</p>
-            <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Get Started</a>
+            <h1 class="display-4">寻找和提供校园兼职工作</h1>
+            <p class="lead">连接学生与校园兼职工作机会。</p>
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg">开始使用</a>
         </div>
     </header>
 
-    <!-- Features Section -->
+    <!-- 功能部分 -->
     <section class="container my-5">
         <div class="row text-center">
             <div class="col-md-4">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
-                        <h5 class="card-title">For Students</h5>
-                        <p class="card-text">Find part-time jobs that fit your schedule and skills.</p>
-                        <a href="{% url 'job_list' %}" class="btn btn-outline-primary">Browse Jobs</a>
+                        <h5 class="card-title">为学生</h5>
+                        <p class="card-text">寻找适合你时间和技能的兼职工作。</p>
+                        <a href="{% url 'job_list' %}" class="btn btn-outline-primary">浏览工作</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
-                        <h5 class="card-title">For Businesses</h5>
-                        <p class="card-text">Post job listings and find suitable students.</p>
-                        <a href="{% url 'create_job' %}" class="btn btn-outline-success">Post a Job</a>
+                        <h5 class="card-title">为企业</h5>
+                        <p class="card-text">发布职位列表并找到合适的学生。</p>
+                        <a href="{% url 'create_job' %}" class="btn btn-outline-success">发布工作</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
-                        <h5 class="card-title">Secure Platform</h5>
-                        <p class="card-text">Providing a safe and trustworthy platform for job seekers and providers.</p>
-                        <a href="{% url 'register' %}" class="btn btn-outline-secondary">Join Now</a>
+                        <h5 class="card-title">安全平台</h5>
+                        <p class="card-text">为求职者和提供者提供一个安全可靠的平台。</p>
+                        <a href="{% url 'register' %}" class="btn btn-outline-secondary">立即加入</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- 关于部分 -->
     <section class="bg-primary text-white py-5">
         <div class="container text-center">
-            <h2>Why Choose Campus Part-time?</h2>
-            <p>We provide seamless connections for students looking for jobs and businesses looking for talent.</p>
+            <h2>为什么选择校园兼职？</h2>
+            <p>我们为寻找工作的学生和寻找人才的企业提供无缝连接。</p>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 页脚 -->
     <footer class="bg-dark text-light py-4">
         <div class="container text-center">
-            <p>&copy; 2025 Campus Part-time. All rights reserved.</p>
+            <p>&copy; 2025 校园兼职。版权所有。</p>
             <p>
-                <a href="#" class="text-light">Privacy Policy</a> |
-                <a href="#" class="text-light">Terms of Service</a>
+                <a href="#" class="text-light">隐私政策</a> |
+                <a href="#" class="text-light">服务条款</a>
             </p>
         </div>
     </footer>
